@@ -1,5 +1,5 @@
 const UserNotFound = () => {
-  return <>USER NOT FOUND</>;
+  return <h1>USER NOT FOUND</h1>;
 };
 
 export default UserNotFound;

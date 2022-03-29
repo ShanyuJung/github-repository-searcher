@@ -3,45 +3,45 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users/Users";
 import "./App.css";
 import Home from "./pages/home/Home";
-import SearchBar from "./pages/home/components/SearchBar";
-import UserNotFound from "./pages/Users/UserNotFound";
 
 function App() {
-  const [username, setUsername] = useState(undefined);
+  const [userInfo, setUserInfo] = useState({});
+  const [userRepos, setUserRepos] = useState([]);
 
-  const getUsername = (name) => {
-    setUsername(name);
+  const getUserInfo = (data) => {
+    setUserInfo(data);
   };
-  console.log(username);
+  // console.log(userInfo);
 
-  // useEffect(() => {
-  //   if (username === undefined) return;
-  //   fetch(`https://api.github.com/users/${username}/repos`, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error(res.statusText);
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, [username]);
+  useEffect(() => {
+    if (userInfo.login === undefined) return;
+    fetch(`https://api.github.com/users/${userInfo.login}/repos`, {
+      method: "GET",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setUserRepos(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [userInfo]);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <SearchBar getUsername={getUsername} />
-
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path={`/users/${username}/repos`} element={<Users />} />
-          <Route path="/userNotFound" element={<UserNotFound />} />
+          <Route path="/" element={<Home getUserInfo={getUserInfo} />} />
+          <Route
+            path={userInfo ? `/users/${userInfo.login}/repos` : "/user"}
+            element={<Users username={userInfo.login} userRepos={userRepos} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users/Users";
-import "./App.css";
-import Home from "./pages/home/Home";
+import classes from "./App.module.css";
+import Home from "./pages/Home/Home";
+import Repo from "./pages/Repos/Repo";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
   const [userRepos, setUserRepos] = useState([]);
+  const [selectedRepo, setSelectedRepo] = useState({});
 
-  const getUserInfo = (data) => {
+  const getUserInfoHandler = (data) => {
     setUserInfo(data);
   };
-  // console.log(userInfo);
+
+  const selectRepoHandler = (repo) => {
+    setSelectedRepo(repo);
+  };
 
   useEffect(() => {
     if (userInfo.login === undefined) return;
+    setUserRepos([]);
     fetch(`https://api.github.com/users/${userInfo.login}/repos`, {
       method: "GET",
     })
@@ -34,13 +40,23 @@ function App() {
   }, [userInfo]);
 
   return (
-    <div className="App">
+    <div className={classes.wrapper}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home getUserInfo={getUserInfo} />} />
+          <Route path="/" element={<Home getUserInfo={getUserInfoHandler} />} />
           <Route
-            path={userInfo ? `/users/${userInfo.login}/repos` : "/user"}
-            element={<Users username={userInfo.login} userRepos={userRepos} />}
+            path={`/users/${userInfo.login}/repos`}
+            element={
+              <Users
+                userInfo={userInfo}
+                userRepos={userRepos}
+                selectRepo={selectRepoHandler}
+              />
+            }
+          />
+          <Route
+            path={`/users/${userInfo.login}/repos/${selectedRepo.name}`}
+            element={<Repo repo={selectedRepo} />}
           />
         </Routes>
       </BrowserRouter>

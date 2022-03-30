@@ -1,0 +1,17 @@
+.header {
+  color: #fff;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.header img {
+  height: 20vh;
+}
+
+.repoBox {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #fff;
+}

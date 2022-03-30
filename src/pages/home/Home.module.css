@@ -1,0 +1,10 @@
+.header {
+  color: #fff;
+  position: absolute;
+  top: 30vh;
+  left: 50vw;
+  transform: translate(-50%, 0%);
+  height: 100px;
+  font-size: 3rem;
+  min-width: 625px;
+}

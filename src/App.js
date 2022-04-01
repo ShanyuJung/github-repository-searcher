@@ -6,58 +6,25 @@ import Home from "./pages/Home/Home";
 import Repo from "./pages/Repos/Repo";
 
 function App() {
-  const [userInfo, setUserInfo] = useState({});
-  const [userRepos, setUserRepos] = useState([]);
-  const [selectedRepo, setSelectedRepo] = useState({});
+  // const [userInfo, setUserInfo] = useState({});
+  // const [userRepos, setUserRepos] = useState([]);
+  // const [selectedRepo, setSelectedRepo] = useState({});
 
-  const getUserInfoHandler = (data) => {
-    setUserInfo(data);
-  };
+  // const getUserInfoHandler = (data) => {
+  //   setUserInfo(data);
+  // };
 
-  const selectRepoHandler = (repo) => {
-    setSelectedRepo(repo);
-  };
-
-  useEffect(() => {
-    if (userInfo.login === undefined) return;
-    setUserRepos([]);
-    fetch(`https://api.github.com/users/${userInfo.login}/repos`, {
-      method: "GET",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setUserRepos(data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [userInfo]);
+  // const selectRepoHandler = (repo) => {
+  //   setSelectedRepo(repo);
+  // };
 
   return (
     <div className={classes.wrapper}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home getUserInfo={getUserInfoHandler} />} />
-          <Route
-            path={`/users/${userInfo.login}/repos`}
-            element={
-              <Users
-                userInfo={userInfo}
-                userRepos={userRepos}
-                selectRepo={selectRepoHandler}
-              />
-            }
-          />
-          <Route
-            path={`/users/${userInfo.login}/repos/${selectedRepo.name}`}
-            element={<Repo repo={selectedRepo} />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path={`/users/:username/repos`} element={<Users />} />
+          <Route path={`/users/:username/repos/:repoName`} element={<Repo />} />
         </Routes>
       </BrowserRouter>
     </div>

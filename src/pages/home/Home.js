@@ -11,7 +11,7 @@ const Home = (props) => {
         <i className="fa-brands fa-github fa-2xl"></i> Github Repository Search
       </div>
       <SearchBar />
-      {isValid && <h1>OPPS! SOMETHING GO WRONG!</h1>}
+      {isValid === false && <h1>OPPS! SOMETHING GO WRONG!</h1>}
     </>
   );
 };

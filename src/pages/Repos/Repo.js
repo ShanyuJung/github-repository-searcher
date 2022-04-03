@@ -14,29 +14,37 @@ const Repo = (props) => {
   });
 
   useEffect(() => {
-    if (props.repo === undefined) {
-      axios({
-        method: "GET",
-        url: `https://api.github.com/users/${username}/repos`,
-      })
-        .then((res) => {
-          console.log("GET repo by Repo.js");
-          // console.log(res.data);
-          const selectedRepo = res.data.filter(
-            (repo) => repo.name === repoName
-          );
-          if (selectedRepo[0] === undefined) {
-            console.log(selectedRepo[0]);
-            setIsError({ errorOccur: true, errorMessage: "Repo Not Found" });
-          } else {
-            setMapRepo(selectedRepo[0]);
-          }
+    let unmounted = false;
+
+    if (!unmounted) {
+      if (props.repo === undefined) {
+        axios({
+          method: "GET",
+          url: `https://api.github.com/users/${username}/repos`,
         })
-        .catch((e) => {
-          console.log(e);
-          setIsError({ errorOccur: true, errorMessage: "User Not Found" });
-        });
+          .then((res) => {
+            console.log("GET repo by Repo.js");
+            // console.log(res.data);
+            const selectedRepo = res.data.filter(
+              (repo) => repo.name === repoName
+            );
+            if (selectedRepo[0] === undefined) {
+              console.log(selectedRepo[0]);
+              setIsError({ errorOccur: true, errorMessage: "Repo Not Found" });
+            } else {
+              setMapRepo(selectedRepo[0]);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+            setIsError({ errorOccur: true, errorMessage: "User Not Found" });
+          });
+      }
     }
+
+    return () => {
+      unmounted = true;
+    };
   }, [username, repoName]);
   // console.log(isError.errorOccur);
 

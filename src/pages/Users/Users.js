@@ -8,7 +8,7 @@ const Users = (props) => {
   const [curPage, setCurPage] = useState(1);
   const navigate = useNavigate();
   const { username } = useParams();
-  const { userInfo, isValid, userRepos } = SearchUser(
+  const { userInfo, isValid, userRepos, totalPage } = SearchUser(
     username,
     perPage,
     curPage
@@ -19,30 +19,33 @@ const Users = (props) => {
     navigate(`/users/${username}/repos/${repo.name}`);
   };
 
-  const scrollHandler = (event) => {
+  const scrollHandler = (totalPage) => (event) => {
     const scrollHeight = event.target.documentElement.scrollHeight;
     const currentHeight = Math.ceil(
       event.target.documentElement.scrollTop + window.innerHeight
     );
-    if (currentHeight + 1 > scrollHeight) {
-      setCurPage(curPage + 1);
+
+    // if (curPage >= totalPage) {
+    //   console.log("over");
+    // }
+    if (currentHeight + 1 >= scrollHeight) {
+      setCurPage((curPage) => (curPage >= totalPage ? curPage : curPage + 1));
       // console.log("AT BOTTOM");
     }
   };
 
-  // console.log(curPage);
+  console.log(curPage);
 
   useEffect(() => {
     let unmounted = false;
-    if (!unmounted) {
-      setCurPage(1);
-      window.addEventListener("scroll", scrollHandler);
-    }
 
+    if (!unmounted) {
+      window.addEventListener("scroll", scrollHandler(totalPage));
+    }
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [totalPage]);
 
   return (
     <>

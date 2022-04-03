@@ -5,6 +5,7 @@ const SearchUser = (name, perPage, curPage) => {
   const [isValid, setIsValid] = useState(undefined);
   const [userInfo, setUserInfo] = useState({});
   const [userRepos, setUserRepos] = useState([]);
+  const [totalPage, setTotalPage] = useState(1);
 
   useEffect(() => {
     if (name === undefined) return;
@@ -17,6 +18,9 @@ const SearchUser = (name, perPage, curPage) => {
           console.log("GET user");
           // console.log(res.data);
           setUserInfo(res.data);
+          setTotalPage(
+            Math.floor(parseInt(res.data["public_repos"]) / perPage) + 1
+          );
           setIsValid(true);
         })
         .catch((err) => {
@@ -61,7 +65,7 @@ const SearchUser = (name, perPage, curPage) => {
     };
   }, [name, curPage]);
 
-  return { userInfo, isValid, userRepos };
+  return { userInfo, isValid, userRepos, totalPage };
 };
 
 export default SearchUser;

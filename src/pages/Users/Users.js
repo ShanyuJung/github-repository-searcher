@@ -30,8 +30,18 @@ const Users = (props) => {
     }
   };
 
+  // console.log(curPage);
+
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler);
+    let unmounted = false;
+    if (!unmounted) {
+      setCurPage(1);
+      window.addEventListener("scroll", scrollHandler);
+    }
+
+    return () => {
+      unmounted = true;
+    };
   }, []);
 
   return (

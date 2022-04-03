@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import classes from "./Repo.module.css";
 import axios from "axios";
 
@@ -51,6 +51,7 @@ const Repo = (props) => {
           <a href={mapRepo["html_url"]} target="_blank">
             github link
           </a>
+          <Link to={`/users/${username}/repos`}>Back to Repos</Link>
         </div>
       )}
       {isError.errorMessage === "Repo Not Found" && <div>Repo Not Found</div>}

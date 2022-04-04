@@ -15,7 +15,7 @@ function App() {
   return (
     <div className={classes.wrapper}>
       <BrowserRouter>
-        <Link to={`/`} className={classes.navbar}>
+        <Link to={`/github-repository-searcher`} className={classes.navbar}>
           <div>
             <i className="fa-brands fa-github fa-2xl"></i> Github Repository
             Searcher
@@ -23,13 +23,13 @@ function App() {
         </Link>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/github-repository-searcher" element={<Home />} />
           <Route
-            path={`/users/:username/repos`}
+            path={`/github-repository-searcher/users/:username/repos`}
             element={<Users selectRepoHandler={selectRepoHandler} />}
           />
           <Route
-            path={`/users/:username/repos/:repoName`}
+            path={`/github-repository-searcher/users/:username/repos/:repoName`}
             element={<Repo repo={selectedRepo} />}
           />
         </Routes>

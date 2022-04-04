@@ -17,7 +17,9 @@ const Users = (props) => {
   //導向選定的repo,同時向app.js傳送選定repo的資料用於repo component渲染
   const showRepoHandler = (repo) => {
     props.selectRepoHandler(repo);
-    navigate(`/users/${username}/repos/${repo.name}`);
+    navigate(
+      `/github-repository-searcher/users/${username}/repos/${repo.name}`
+    );
   };
 
   //管理Infinite Scroll

@@ -69,27 +69,18 @@ const Repo = (props) => {
               : mapRepo["description"]}
           </div>
 
-          <Link
-            to={`/github-repository-searcher/users/${username}/repos`}
-            className={classes.backToRepos}
-          >
+          <Link to={`/users/${username}/repos`} className={classes.backToRepos}>
             Back to Repos
           </Link>
         </div>
       )}
       {isError.errorMessage === "Repo Not Found" && (
-        <Link
-          to={`/github-repository-searcher/users/${username}/repos`}
-          className={classes.errorMessage}
-        >
+        <Link to={`/users/${username}/repos`} className={classes.errorMessage}>
           oops! Repo not found! try another repo name!
         </Link>
       )}
       {isError.errorMessage === "User Not Found" && (
-        <Link
-          to={`/github-repository-searcher`}
-          className={classes.errorMessage}
-        >
+        <Link to={`/`} className={classes.errorMessage}>
           oops! something went wrong! try another username!
         </Link>
       )}

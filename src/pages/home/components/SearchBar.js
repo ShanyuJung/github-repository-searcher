@@ -8,7 +8,7 @@ const SearchBar = (props) => {
 
   const searchUserHandler = () => {
     if (inputValue !== "" && inputValue !== undefined) {
-      navigate(`users/${inputValue}/repos`);
+      navigate(`/users/${inputValue}/repos`);
       return;
     }
     alert("Please Enter at least one character");

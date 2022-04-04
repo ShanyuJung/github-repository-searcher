@@ -32,7 +32,7 @@ const SearchUser = (name, perPage, curPage) => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     if (name === undefined) return;

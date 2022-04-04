@@ -15,7 +15,7 @@ const SearchUser = (name, perPage, curPage) => {
       //Check username searched by user is valid and GET basic information.
       axios({ method: "GET", url: `https://api.github.com/users/${name}` })
         .then((res) => {
-          console.log("GET user");
+          // console.log("GET user");
           // console.log(res.data);
           setUserInfo(res.data);
           setTotalPage(
@@ -39,14 +39,14 @@ const SearchUser = (name, perPage, curPage) => {
     let unmounted = false;
 
     if (!unmounted) {
-      //If username is valid, GET repository information.
+      //GET repository information.Request 10 repos for each request.
       axios({
         method: "GET",
         url: `https://api.github.com/users/${name}/repos`,
         params: { per_page: perPage, page: curPage },
       })
         .then((res) => {
-          console.log("GET repo");
+          // console.log("GET repo");
           // console.log(res.data);
           if (curPage === 1) {
             setUserRepos(res.data);

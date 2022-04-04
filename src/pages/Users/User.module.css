@@ -1,17 +1,73 @@
 .header {
+  font-weight: 600;
   color: #fff;
   font-size: 5rem;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem;
 }
 
 .header img {
   height: 20vh;
 }
 
+.username {
+  width: 100vw;
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+.headerBar {
+  font-weight: 600;
+  color: #fff;
+  font-size: 5rem;
+  margin: auto;
+  width: fit-content;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.repoList {
+  margin: 1rem;
+}
+
 .repoBox {
   color: #fff;
   display: flex;
+  font-size: 1rem;
   justify-content: center;
-  border: 1px solid #fff;
+}
+
+.repoBox:hover {
+  font-size: 1.5rem;
+}
+
+.repoFooter {
+  color: #fff;
+  font-size: 0.3rem;
+  opacity: 0.3;
+  margin-top: 2rem;
+}
+
+.errorMessage {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .headerBar {
+    font-size: 3rem;
+  }
+  .repoBox {
+    font-size: 0.8rem;
+  }
+  .repoBox:hover {
+    font-size: 1.2rem;
+  }
 }

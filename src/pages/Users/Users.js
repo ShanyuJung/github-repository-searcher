@@ -1,5 +1,5 @@
 import classes from "./User.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SearchUser from "../../API/SearchUser";
 import { useEffect, useState } from "react";
 
@@ -14,27 +14,23 @@ const Users = (props) => {
     curPage
   );
 
+  //導向選定的repo,同時向app.js傳送選定repo的資料用於repo component渲染
   const showRepoHandler = (repo) => {
     props.selectRepoHandler(repo);
     navigate(`/users/${username}/repos/${repo.name}`);
   };
 
+  //管理Infinite Scroll
   const scrollHandler = (totalPage) => (event) => {
     const scrollHeight = event.target.documentElement.scrollHeight;
     const currentHeight = Math.ceil(
       event.target.documentElement.scrollTop + window.innerHeight
     );
-
-    // if (curPage >= totalPage) {
-    //   console.log("over");
-    // }
+    //捲動到底部更新curPage, 觸發SearchUser()再次發送req再請求10筆repo資料
     if (currentHeight + 1 >= scrollHeight) {
       setCurPage((curPage) => (curPage >= totalPage ? curPage : curPage + 1));
-      // console.log("AT BOTTOM");
     }
   };
-
-  console.log(curPage);
 
   useEffect(() => {
     let unmounted = false;
@@ -53,24 +49,35 @@ const Users = (props) => {
         <>
           <div className={classes.header}>
             <img src={userInfo.avatar_url} />
-            <div>{`USERS:${userInfo.login}`}</div>
+            <div className={classes.username}>{userInfo.login}</div>
           </div>
-          {userRepos.map((repo) => {
-            return (
-              <div
-                key={repo.id}
-                className={classes.repoBox}
-                onClick={() => showRepoHandler(repo)}
-              >
-                <h2>{repo.name}</h2>
-
-                <h2>{repo.stargazers_count}</h2>
-              </div>
-            );
-          })}
+          <div className={classes.headerBar}>Repositories </div>
+          <div className={classes.repoList}>
+            {userRepos.map((repo) => {
+              return (
+                <div
+                  key={repo.id}
+                  className={classes.repoBox}
+                  onClick={() => showRepoHandler(repo)}
+                >
+                  <h1>{repo.name}</h1>
+                  <h4>
+                    <i className="fa-solid fa-star">{repo.stargazers_count}</i>
+                  </h4>
+                </div>
+              );
+            })}
+            <div className={classes.repoFooter}>
+              <i className="fa-solid fa-circle"></i>
+            </div>
+          </div>
         </>
       )}
-      {!isValid && <div>User Not Found</div>}
+      {!isValid && (
+        <Link to={`/`} className={classes.errorMessage}>
+          oops! something went wrong! try another username!
+        </Link>
+      )}
     </>
   );
 };

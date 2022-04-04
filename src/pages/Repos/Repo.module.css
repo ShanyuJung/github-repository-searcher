@@ -1,4 +1,64 @@
 .repo {
   color: #fff;
-  /* overflow: hidden; */
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.repoName {
+  font-size: 2.5rem;
+  font-weight: 600;
+  width: 100%;
+  word-break: break-all;
+  margin: 1rem auto 3rem auto;
+}
+
+.bar {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem auto;
+}
+
+.backToRepos {
+  color: #fff;
+  width: 300px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.backToRepos:hover {
+  font-size: 2.5rem;
+}
+
+.content {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.content a {
+  color: #fff;
+}
+
+.content a:hover {
+  font-size: 2rem;
+}
+
+.errorMessage {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .repoName {
+    font-size: 2rem;
+  }
 }

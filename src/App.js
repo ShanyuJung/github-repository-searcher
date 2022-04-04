@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Users from "./pages/Users/Users";
 import classes from "./App.module.css";
@@ -6,15 +6,8 @@ import Home from "./pages/Home/Home";
 import Repo from "./pages/Repos/Repo";
 
 function App() {
-  // const [userInfo, setUserInfo] = useState({});
-  // const [userRepos, setUserRepos] = useState([]);
+  //暫存選取的repo的資料
   const [selectedRepo, setSelectedRepo] = useState(undefined);
-  // console.log(selectedRepo);
-
-  // const getUserInfoHandler = (data) => {
-  //   setUserInfo(data);
-  // };
-
   const selectRepoHandler = (repo) => {
     setSelectedRepo(repo);
   };

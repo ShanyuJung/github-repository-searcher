@@ -14,12 +14,13 @@ Click search button or press Enter to search user on Github.
 
 ### `User's Repositories`
 
+`https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos`\
 After click search button,project will lead user's repository page. \
-At this page(https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos)\
-,you can get 10 repositories of searched user, once you scroll to bottom,you will get 10 more repositories, until all repositories is loaded.
+At this page,you can get 10 repositories of searched user, once you scroll to bottom,you will get 10 more repositories, until all repositories is loaded.
 
 ### `Single Repository`
 
+`https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos/{repoName}`\
 You can click each repository ,then project will lead to selected repository page. \
-At this page(https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos/{repo}))\
+At this page
 ,you can get more information of selected repository, include repo's full name, description, stargazers and a link to selected repository on github.

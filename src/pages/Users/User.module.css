@@ -1,6 +1,6 @@
 .header {
   font-weight: 600;
-  color: #fff;
+  color: #ddd;
   font-size: 5rem;
   display: flex;
   justify-content: center;
@@ -20,12 +20,12 @@
 
 .headerBar {
   font-weight: 600;
-  color: #fff;
+  color: #ddd;
   font-size: 5rem;
   margin: auto;
   width: fit-content;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
 .repoList {
@@ -33,25 +33,25 @@
 }
 
 .repoBox {
-  color: #fff;
+  color: #ddd;
   display: flex;
   font-size: 1rem;
   justify-content: center;
 }
 
 .repoBox:hover {
-  font-size: 1.5rem;
+  color: #fff;
 }
 
 .repoFooter {
-  color: #fff;
+  color: #ddd;
   font-size: 0.3rem;
   opacity: 0.3;
   margin-top: 2rem;
 }
 
 .errorMessage {
-  color: #fff;
+  color: #ddd;
   font-size: 2rem;
   text-transform: uppercase;
   display: flex;

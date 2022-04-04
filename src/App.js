@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users/Users";
 import classes from "./App.module.css";
 import Home from "./pages/Home/Home";
@@ -15,6 +15,13 @@ function App() {
   return (
     <div className={classes.wrapper}>
       <BrowserRouter>
+        <Link to={`/`} className={classes.navbar}>
+          <div>
+            <i className="fa-brands fa-github fa-2xl"></i> Github Repository
+            Searcher
+          </div>
+        </Link>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

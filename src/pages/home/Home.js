@@ -6,10 +6,10 @@ const Home = (props) => {
   const { isValid } = SearchUser();
   return (
     <>
-      <div className={classes.header}>
+      {/* <div className=".navbar-brand ">
         <i className="fa-brands fa-github fa-2xl"></i> Github Repository
         Searcher
-      </div>
+      </div> */}
       <SearchBar />
     </>
   );

@@ -48,19 +48,41 @@ const Users = (props) => {
       {isValid && (
         <>
           <div className={classes.header}>
-            <img src={userInfo.avatar_url} />
-            <div className={classes.username}>{userInfo.login}</div>
+            <div className={classes.imgLandscape}>
+              <img src={userInfo.avatar_url} />
+            </div>
+            <div className={classes.username}>
+              <a href={userInfo.html_url} target="_blank">
+                {userInfo.login}
+              </a>
+            </div>
+            {(userInfo.followers || userInfo.following !== 0) && (
+              <div className={classes.userInfoDetail}>
+                <i className="fa-solid fa-user-group"></i>
+                {`${userInfo.followers} · ${userInfo.following}`}
+              </div>
+            )}
+            {userInfo.location && (
+              <div className={classes.userInfoDetail}>
+                <i className="fa-solid fa-location-dot"></i>
+                {userInfo.location}
+              </div>
+            )}
+            {userInfo.blog && (
+              <div className={classes.userInfoDetail}>
+                <i className="fa-solid fa-link"></i>
+                <a href={userInfo.blog} target="_blank">
+                  {userInfo.blog}
+                </a>
+              </div>
+            )}
           </div>
           <div className={classes.headerBar}>Repositories </div>
           <div className={classes.repoList}>
             {userRepos.map((repo) => {
               return (
-                <div
-                  key={repo.id}
-                  className={classes.repoBox}
-                  onClick={() => showRepoHandler(repo)}
-                >
-                  <h1>{repo.name}</h1>
+                <div key={repo.id} className={classes.repoBox}>
+                  <h1 onClick={() => showRepoHandler(repo)}>{repo.name}</h1>
                   <h4>
                     <i className="fa-solid fa-star">{repo.stargazers_count}</i>
                   </h4>
@@ -73,7 +95,7 @@ const Users = (props) => {
           </div>
         </>
       )}
-      {!isValid && (
+      {isValid === false && (
         <Link to={`/`} className={classes.errorMessage}>
           oops! something went wrong! try another username!
         </Link>

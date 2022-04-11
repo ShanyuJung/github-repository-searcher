@@ -8,14 +8,47 @@
   margin: 1rem;
 }
 
-.header img {
-  height: 20vh;
+.imgLandscape {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.imgLandscape img {
+  width: auto;
+  height: 100%;
 }
 
 .username {
   width: 100vw;
-  font-size: 2rem;
   margin: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.username a {
+  text-decoration: none;
+  color: #ddd;
+}
+
+.username:hover a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.userInfoDetail {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.userInfoDetail a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.userInfoDetail a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .headerBar {
@@ -29,7 +62,11 @@
 }
 
 .repoList {
-  margin: 1rem;
+  margin: 1rem 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .repoBox {
@@ -37,10 +74,13 @@
   display: flex;
   font-size: 1rem;
   justify-content: center;
+  width: 100vw;
 }
 
-.repoBox:hover {
+.repoBox h1:hover {
   color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .repoFooter {

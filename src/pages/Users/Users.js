@@ -2,6 +2,7 @@ import classes from "./User.module.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SearchUser from "../../API/SearchUser";
 import { useEffect, useState } from "react";
+import UserInfoBox from "./components/UserInfoBox";
 
 const Users = (props) => {
   const perPage = 10;
@@ -47,36 +48,7 @@ const Users = (props) => {
     <>
       {isValid && (
         <>
-          <div className={classes.header}>
-            <div className={classes.imgLandscape}>
-              <img src={userInfo.avatar_url} />
-            </div>
-            <div className={classes.username}>
-              <a href={userInfo.html_url} target="_blank">
-                {userInfo.login}
-              </a>
-            </div>
-            {(userInfo.followers || userInfo.following !== 0) && (
-              <div className={classes.userInfoDetail}>
-                <i className="fa-solid fa-user-group"></i>
-                {`${userInfo.followers} · ${userInfo.following}`}
-              </div>
-            )}
-            {userInfo.location && (
-              <div className={classes.userInfoDetail}>
-                <i className="fa-solid fa-location-dot"></i>
-                {userInfo.location}
-              </div>
-            )}
-            {userInfo.blog && (
-              <div className={classes.userInfoDetail}>
-                <i className="fa-solid fa-link"></i>
-                <a href={userInfo.blog} target="_blank">
-                  {userInfo.blog}
-                </a>
-              </div>
-            )}
-          </div>
+          <UserInfoBox userInfo={userInfo} />
           <div className={classes.headerBar}>Repositories </div>
           <div className={classes.repoList}>
             {userRepos.map((repo) => {

@@ -1,7 +1,7 @@
 # Github Repository Searcher
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [react router dom](https://www.npmjs.com/package/react-router-dom).\
-User can use this project to search user on github, then get repositories of user.\
+User can use this project to search user on github, then get repositories of user.
 
 ## Available Function
 

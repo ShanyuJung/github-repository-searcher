@@ -16,7 +16,7 @@ const SearchUser = (name, perPage, curPage) => {
       axios({ method: "GET", url: `https://api.github.com/users/${name}` })
         .then((res) => {
           // console.log("GET user");
-          console.log(res.data);
+          // console.log(res.data);
           setUserInfo(res.data);
           setTotalPage(
             Math.floor(parseInt(res.data["public_repos"]) / perPage) + 1

@@ -13,25 +13,65 @@ const UserInfoBox = (props) => {
         </a>
       </div>
 
+      {
+        // 有自介顯示自介
+        userInfo.bio && (
+          <div className={classes.userInfoDetail}>
+            <i className="fa-solid fa-location-dot"></i>
+            {userInfo.bio}
+          </div>
+        )
+      }
+
       <div className={classes.userInfoDetail}>
         <i className="fa-solid fa-user-group"></i>
-        {`${userInfo.followers} · ${userInfo.following}`}
+        {`${userInfo.followers} followers · ${userInfo.following} following`}
       </div>
 
-      {userInfo.location && (
-        <div className={classes.userInfoDetail}>
-          <i className="fa-solid fa-location-dot"></i>
-          {userInfo.location}
-        </div>
-      )}
-      {userInfo.blog && (
-        <div className={classes.userInfoDetail}>
-          <i className="fa-solid fa-link"></i>
-          <a href={userInfo.blog} target="_blank">
-            {userInfo.blog}
-          </a>
-        </div>
-      )}
+      {
+        // 有位置顯示位置
+        userInfo.location && (
+          <div className={classes.userInfoDetail}>
+            <i className="fa-solid fa-location-dot"></i>
+            {userInfo.location}
+          </div>
+        )
+      }
+
+      {
+        // 有email顯示email
+        userInfo.email && (
+          <div className={classes.userInfoDetail}>
+            <i className="fa-solid fa-envelope"></i>
+            {userInfo.email}
+          </div>
+        )
+      }
+      {
+        // 有blog顯示blog link
+        userInfo.blog && (
+          <div className={classes.userInfoDetail}>
+            <i className="fa-solid fa-link"></i>
+            <a href={userInfo.blog} target="_blank">
+              {userInfo.blog}
+            </a>
+          </div>
+        )
+      }
+      {
+        // 有twitter_username顯示twitter link
+        userInfo.twitter_username && (
+          <div className={classes.userInfoDetail}>
+            <i className="fa-brands fa-twitter"></i>
+            <a
+              href={`https://twitter.com/${userInfo.twitter_username}`}
+              target="_blank"
+            >
+              {`@${userInfo.twitter_username}`}
+            </a>
+          </div>
+        )
+      }
     </div>
   );
 };

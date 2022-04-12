@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import SearchUser from "../../API/SearchUser";
 import { useEffect, useState } from "react";
 import UserInfoBox from "./components/UserInfoBox";
+import RepoBox from "./components/RepoBox";
 
 const Users = (props) => {
   const perPage = 10;
@@ -49,16 +50,18 @@ const Users = (props) => {
       {isValid && (
         <>
           <UserInfoBox userInfo={userInfo} />
-          <div className={classes.headerBar}>Repositories </div>
+          <div className={classes.headerBar}>
+            <p>Repositories</p>
+            <p className={classes.repoCount}>{`${userInfo.public_repos}`}</p>
+          </div>
           <div className={classes.repoList}>
             {userRepos.map((repo) => {
               return (
-                <div key={repo.id} className={classes.repoBox}>
-                  <h1 onClick={() => showRepoHandler(repo)}>{repo.name}</h1>
-                  <h4>
-                    <i className="fa-solid fa-star">{repo.stargazers_count}</i>
-                  </h4>
-                </div>
+                <RepoBox
+                  key={repo.id}
+                  repo={repo}
+                  showRepoHandler={showRepoHandler}
+                />
               );
             })}
             <div className={classes.repoFooter}>

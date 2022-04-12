@@ -2,34 +2,40 @@
   font-weight: 600;
   color: #ddd;
   font-size: 5rem;
+  height: 7rem;
   margin: auto;
-  width: fit-content;
+  width: 80vw;
+  max-width: 1200px;
   border-top: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
   cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerBar p {
+  margin: 0 0 0 1rem;
+}
+
+.repoCount {
+  color: #333;
+  padding: 1rem 0.5rem 1.2rem 0.5rem;
+  font-size: 2.5rem;
+  height: 2rem;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  background-color: #ddd;
+  border-radius: 25px;
 }
 
 .repoList {
-  margin: 1rem 0;
-  width: 100vw;
+  margin: 1rem auto;
+  width: 90vw;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.repoBox {
-  color: #ddd;
-  display: flex;
-  font-size: 1rem;
-  justify-content: center;
-  width: 100vw;
-  cursor: default;
-}
-
-.repoBox h1:hover {
-  color: #fff;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .repoFooter {
@@ -37,6 +43,7 @@
   font-size: 0.3rem;
   opacity: 0.3;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .errorMessage {
@@ -52,11 +59,22 @@
 @media (max-width: 768px) {
   .headerBar {
     font-size: 3rem;
+    height: 5rem;
   }
-  .repoBox {
+
+  .repoCount {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .headerBar {
+    font-size: 2rem;
+    height: 4rem;
+  }
+
+  .repoCount {
     font-size: 0.8rem;
-  }
-  .repoBox:hover {
-    font-size: 1.2rem;
   }
 }

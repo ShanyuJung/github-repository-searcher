@@ -27,6 +27,7 @@ body {
   text-decoration: none;
   width: 100vw;
   font-weight: 600;
+  z-index: 1;
 }
 
 .navbar:hover {

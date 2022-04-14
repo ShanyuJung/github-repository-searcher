@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import classes from "./Repo.module.css";
 import axios from "axios";
+import RepoInfoCard from "./component/RepoInfoCard";
 
 const Repo = (props) => {
   const { username, repoName } = useParams();
@@ -53,21 +54,39 @@ const Repo = (props) => {
     <>
       {!isError.errorOccur && (
         <div className={classes.repo}>
-          <div className={classes.repoName}>{mapRepo["full_name"]}</div>
-          <div className={classes.bar}>About</div>
-          <div className={classes.content}>
-            <i className="fa-solid fa-star">{mapRepo["stargazers_count"]}</i>{" "}
-            <i className="fa-solid fa-code-fork">{mapRepo["forks_count"]}</i>{" "}
+          <div className={classes.repoName}>
             <a href={mapRepo["html_url"]} target="_blank">
-              <i className="fa-brands fa-github fa-xl"></i>
+              {mapRepo["full_name"]}
             </a>
           </div>
-          <div className={classes.bar}>Description</div>
-          <div className={classes.content}>
-            {mapRepo["description"] == undefined
-              ? "none"
-              : mapRepo["description"]}
-          </div>
+          <RepoInfoCard header="About">
+            <>
+              <div className={classes.content}>
+                {mapRepo["description"] == undefined
+                  ? "none"
+                  : mapRepo["description"]}
+              </div>
+              <div className={classes.content}>
+                {mapRepo["license"] && (
+                  <div>
+                    <i className="fa-solid fa-scale-balanced"></i>
+                    {mapRepo["license"]["name"]}
+                  </div>
+                )}
+                <div>
+                  <i className="fa-solid fa-star"></i>
+                  {`${mapRepo["stargazers_count"]} stars`}
+                </div>
+                <div>
+                  <i className="fa-solid fa-code-fork"></i>
+                  {`${mapRepo["forks_count"]} forks`}
+                </div>
+              </div>
+            </>
+          </RepoInfoCard>
+          <RepoInfoCard header="Language">
+            <div className={classes.content}>{mapRepo.language}</div>
+          </RepoInfoCard>
 
           <Link to={`/users/${username}/repos`} className={classes.backToRepos}>
             Back to Repos

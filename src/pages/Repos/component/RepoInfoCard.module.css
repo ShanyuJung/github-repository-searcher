@@ -1,0 +1,33 @@
+.card {
+  width: 80%;
+  max-width: 600px;
+  /* border: 2px #6e7681 solid; */
+  border-radius: 10px;
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardHeader {
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: auto;
+  border-bottom: 2px solid #6e7681;
+  cursor: default;
+}
+
+.cardContent {
+  width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 90%;
+  }
+  .cardHeader {
+    font-size: 1.5rem;
+  }
+}

@@ -24,3 +24,20 @@ At this page,you can get 10 repositories of searched user, once you scroll to bo
 You can click each repository ,then project will lead to selected repository page. \
 At this page
 ,you can get more information of selected repository, include repo's full name, description, stargazers and a link to selected repository on github.
+
+### `Updated 2022-4-14`
+
+Updated List:
+
+`User's Repositories`
+
+1. Update components and css files.
+2. Searched user information include bio, location, email, blog and twitter will be showed if it is available.
+3. Number of public repositories will be showed.
+4. Main Language ,stargazers and last update date of each repository will be showed.
+
+`Single Repository`
+
+1. Update components and css files.
+2. Selected repository information include description, license, stargazers, forks and main Language will be showed.
+3. Remove github icon(link to repository on Github), now user can click repository full name to open a new tab that link to selected repository on Github.

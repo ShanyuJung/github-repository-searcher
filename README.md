@@ -10,20 +10,23 @@ In the project directory, you can do:
 ### `Search User`
 
 At [Home page](https://shanyujung.github.io/github-repository-searcher/),you can enter username that want to search in the search bar, then
-Click search button or press Enter to search user on Github.
+Click search button or press Enter to search user on Github.\
+![search_demo](https://github.com/ShanyuJung/github-repository-searcher/blob/master/src/assets/github-repo-searcher_search_demo.gif)
 
 ### `User's Repositories`
 
 `https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos`\
 After click search button,project will lead user's repository page. \
-At this page,you can get 10 repositories of searched user, once you scroll to bottom,you will get 10 more repositories, until all repositories is loaded.
+At this page,you can get 10 repositories of searched user, once you scroll to bottom,you will get 10 more repositories, until all repositories is loaded.\
+![infiniteScroll_demo](https://github.com/ShanyuJung/github-repository-searcher/blob/master/src/assets/github-repo-searcher_infiniteScroll_demo.gif)
 
 ### `Single Repository`
 
 `https://shanyujung.github.io/github-repository-searcher/#/users/{username}/repos/{repoName}`\
 You can click each repository ,then project will lead to selected repository page. \
 At this page
-,you can get more information of selected repository, include repo's full name, description, stargazers and a link to selected repository on github.
+,you can get more information of selected repository, include repo's full name, description, stargazers and a link to selected repository on github.\
+![repo_demo](https://github.com/ShanyuJung/github-repository-searcher/blob/master/src/assets/github-repo-searcher_repo_demo.gif)
 
 ### `Updated 2022-4-14`
 

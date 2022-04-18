@@ -1,9 +1,9 @@
-import SearchBar from "./components/SearchBar";
+import StyledSearchBar from "./components/SearchBar";
 
 const Home = (props) => {
   return (
     <>
-      <SearchBar />
+      <StyledSearchBar />
     </>
   );
 };

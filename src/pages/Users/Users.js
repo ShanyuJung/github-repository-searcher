@@ -1,9 +1,10 @@
-import classes from "./User.module.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SearchUser from "../../API/SearchUser";
 import { useEffect, useState } from "react";
-import UserInfoBox from "./components/UserInfoBox";
-import RepoBox from "./components/RepoBox";
+import StyledUserInfoBox from "./components/UserInfoBox";
+import StyledRepoHeader from "./components/RepoHeader";
+import StyledRepoList from "./components/RepoList";
+import StyledErrorMessage from "./components/ErrorMessage";
 
 const Users = (props) => {
   const perPage = 10;
@@ -49,32 +50,15 @@ const Users = (props) => {
     <>
       {isValid && (
         <>
-          <UserInfoBox userInfo={userInfo} />
-          <div className={classes.headerBar}>
-            <p>Repositories</p>
-            <p className={classes.repoCount}>{`${userInfo.public_repos}`}</p>
-          </div>
-          <div className={classes.repoList}>
-            {userRepos.map((repo) => {
-              return (
-                <RepoBox
-                  key={repo.id}
-                  repo={repo}
-                  showRepoHandler={showRepoHandler}
-                />
-              );
-            })}
-            <div className={classes.repoFooter}>
-              <i className="fa-solid fa-circle"></i>
-            </div>
-          </div>
+          <StyledUserInfoBox userInfo={userInfo} />
+          <StyledRepoHeader repoCount={userInfo.public_repos} />
+          <StyledRepoList
+            userRepos={userRepos}
+            showRepoHandler={showRepoHandler}
+          />
         </>
       )}
-      {isValid === false && (
-        <Link to={`/`} className={classes.errorMessage}>
-          oops! something went wrong! try another username!
-        </Link>
-      )}
+      {isValid === false && <StyledErrorMessage />}
     </>
   );
 };

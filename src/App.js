@@ -4,7 +4,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users/Users";
 import Home from "./pages/Home/Home";
 import Repo from "./pages/Repos/Repo";
-import StyledHeader from "./Layout/StyledHeader";
+import StyledHeader from "./Layout/Header";
 
 function App() {
   //暫存選取的repo的資料

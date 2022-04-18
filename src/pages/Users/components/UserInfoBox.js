@@ -1,13 +1,12 @@
-import classes from "./UserInfoBox.module.css";
+import styled from "styled-components";
 
-const UserInfoBox = (props) => {
-  const userInfo = props.userInfo;
+const UserInfoBox = ({ className, userInfo }) => {
   return (
-    <div className={classes.header}>
-      <div className={classes.imgLandscape}>
+    <div className={className}>
+      <div className="imgLandscape">
         <img src={userInfo.avatar_url} />
       </div>
-      <div className={classes.username}>
+      <div className="username">
         <a href={userInfo.html_url} target="_blank">
           {userInfo.login}
         </a>
@@ -16,14 +15,14 @@ const UserInfoBox = (props) => {
       {
         // 有自介顯示自介
         userInfo.bio && (
-          <div className={classes.userInfoDetail}>
+          <div className="userInfoDetail">
             <i className="fa-solid fa-location-dot"></i>
             {userInfo.bio}
           </div>
         )
       }
 
-      <div className={classes.userInfoDetail}>
+      <div className="userInfoDetail">
         <i className="fa-solid fa-user-group"></i>
         {`${userInfo.followers} followers · ${userInfo.following} following`}
       </div>
@@ -31,7 +30,7 @@ const UserInfoBox = (props) => {
       {
         // 有位置顯示位置
         userInfo.location && (
-          <div className={classes.userInfoDetail}>
+          <div className="userInfoDetail">
             <i className="fa-solid fa-location-dot"></i>
             {userInfo.location}
           </div>
@@ -41,7 +40,7 @@ const UserInfoBox = (props) => {
       {
         // 有email顯示email
         userInfo.email && (
-          <div className={classes.userInfoDetail}>
+          <div className="userInfoDetail">
             <i className="fa-solid fa-envelope"></i>
             {userInfo.email}
           </div>
@@ -50,7 +49,7 @@ const UserInfoBox = (props) => {
       {
         // 有blog顯示blog link
         userInfo.blog && (
-          <div className={classes.userInfoDetail}>
+          <div className="userInfoDetail">
             <i className="fa-solid fa-link"></i>
             <a href={userInfo.blog} target="_blank">
               {userInfo.blog}
@@ -61,7 +60,7 @@ const UserInfoBox = (props) => {
       {
         // 有twitter_username顯示twitter link
         userInfo.twitter_username && (
-          <div className={classes.userInfoDetail}>
+          <div className="userInfoDetail">
             <i className="fa-brands fa-twitter"></i>
             <a
               href={`https://twitter.com/${userInfo.twitter_username}`}
@@ -76,4 +75,64 @@ const UserInfoBox = (props) => {
   );
 };
 
-export default UserInfoBox;
+const StyledUserInfoBox = styled(UserInfoBox)`
+  font-weight: 600;
+  color: #ddd;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: default;
+  width: 600px;
+  margin: 1rem auto;
+  text-align: center;
+
+  .imgLandscape {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .imgLandscape img {
+    width: auto;
+    height: 100%;
+  }
+
+  .username {
+    width: 100vw;
+    margin: 0.5rem;
+    font-size: 2.5rem;
+  }
+
+  .username a {
+    text-decoration: none;
+    color: #ddd;
+  }
+
+  .username:hover a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .userInfoDetail {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .userInfoDetail a {
+    color: #ddd;
+    text-decoration: none;
+  }
+
+  .userInfoDetail a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
+`;
+
+export default StyledUserInfoBox;

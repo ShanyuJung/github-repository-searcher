@@ -1,0 +1,32 @@
+import styled from "styled-components";
+import StyledRepoBox from "./RepoBox";
+import StyledRepoFooter from "./RepoFooter";
+
+const RepoList = ({ className, userRepos, showRepoHandler }) => {
+  return (
+    <div className={className}>
+      {userRepos.map((repo) => {
+        return (
+          <StyledRepoBox
+            key={repo.id}
+            repo={repo}
+            showRepoHandler={showRepoHandler}
+          />
+        );
+      })}
+      <StyledRepoFooter />
+    </div>
+  );
+};
+
+const StyledRepoList = styled(RepoList)`
+  margin: 1rem auto;
+  width: 90vw;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+`;
+
+export default StyledRepoList;

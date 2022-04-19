@@ -1,7 +1,8 @@
 # Github Repository Searcher
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [react router dom](https://www.npmjs.com/package/react-router-dom).\
-User can use this project to search user on github, then get repositories of user.
+All CSS styles are managed by [styled-components](https://styled-components.com/).\
+User can use this project to search user on github, then get repositories information of searched user.
 
 ## Available Function
 
@@ -28,9 +29,15 @@ At this page
 ,you can get more information of selected repository, include repo's full name, description, stargazers and a link to selected repository on github.\
 ![repo_demo](https://github.com/ShanyuJung/github-repository-searcher/blob/master/src/assets/github-repo-searcher_repo_demo.gif)
 
-### `Updated 2022-4-14`
+## `Updated List `
 
-Updated List:
+### `Updated Detail 2022-4-19`:
+
+`styled-components`
+
+1.Updated all css with styled-components, delete all css module.
+
+### `Updated Detail 2022-4-14`:
 
 `User's Repositories`
 

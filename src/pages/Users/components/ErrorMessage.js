@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const ErrorMessage = ({ className }) => {
+const ErrorMessage = ({ className, path, children }) => {
   return (
-    <Link to={`/`} className={className}>
-      oops! something went wrong! try another username!
+    <Link to={path} className={className}>
+      {children}
     </Link>
   );
 };
@@ -14,11 +14,11 @@ const StyledErrorMessage = styled(ErrorMessage)`
   font-size: 2rem;
   text-transform: uppercase;
   display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
-  transform: translate(0%, -20%);
   text-align: center;
+  width: fit-content;
+  margin: 30vh auto;
 `;
 
 export default StyledErrorMessage;

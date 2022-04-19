@@ -58,7 +58,11 @@ const Users = (props) => {
           />
         </>
       )}
-      {isValid === false && <StyledErrorMessage />}
+      {isValid === false && (
+        <StyledErrorMessage path="/">
+          oops! something went wrong! try another username!
+        </StyledErrorMessage>
+      )}
     </>
   );
 };

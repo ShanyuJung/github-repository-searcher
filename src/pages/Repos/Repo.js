@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import classes from "./Repo.module.css";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import RepoInfoCard from "./component/RepoInfoCard";
+import StyledRepoInfoCard from "./component/RepoInfoCard";
+import StyledRepoNameHeader from "./component/RepoNameHeader";
+import StyledRepoContainer from "./component/RepoContainer";
+import StyledErrorMessage from "../Users/components/ErrorMessage";
+import StyledRepoDetail from "./component/RepoDetail";
+import StyledRepoLink from "./component/RepoLink";
 
 const Repo = (props) => {
   const { username, repoName } = useParams();
@@ -53,20 +57,16 @@ const Repo = (props) => {
   return (
     <>
       {!isError.errorOccur && (
-        <div className={classes.repo}>
-          <div className={classes.repoName}>
-            <a href={mapRepo["html_url"]} target="_blank">
-              {mapRepo["full_name"]}
-            </a>
-          </div>
-          <RepoInfoCard header="About">
+        <StyledRepoContainer>
+          <StyledRepoNameHeader mapRepo={mapRepo} />
+          <StyledRepoInfoCard header="About">
             <>
-              <div className={classes.content}>
+              <StyledRepoDetail>
                 {mapRepo["description"] == undefined
                   ? "none"
                   : mapRepo["description"]}
-              </div>
-              <div className={classes.content}>
+              </StyledRepoDetail>
+              <StyledRepoDetail>
                 {mapRepo["license"] && (
                   <div>
                     <i className="fa-solid fa-scale-balanced"></i>
@@ -81,27 +81,28 @@ const Repo = (props) => {
                   <i className="fa-solid fa-code-fork"></i>
                   {`${mapRepo["forks_count"]} forks`}
                 </div>
-              </div>
+              </StyledRepoDetail>
             </>
-          </RepoInfoCard>
-          <RepoInfoCard header="Language">
-            <div className={classes.content}>{mapRepo.language}</div>
-          </RepoInfoCard>
-
-          <Link to={`/users/${username}/repos`} className={classes.backToRepos}>
+          </StyledRepoInfoCard>
+          <StyledRepoInfoCard header="Language">
+            <StyledRepoDetail>
+              {mapRepo.language ? mapRepo.language : "-"}
+            </StyledRepoDetail>
+          </StyledRepoInfoCard>
+          <StyledRepoLink path={`/users/${username}/repos`}>
             Back to Repos
-          </Link>
-        </div>
+          </StyledRepoLink>
+        </StyledRepoContainer>
       )}
       {isError.errorMessage === "Repo Not Found" && (
-        <Link to={`/users/${username}/repos`} className={classes.errorMessage}>
+        <StyledErrorMessage path={`/users/${username}/repos`}>
           oops! Repo not found! try another repo name!
-        </Link>
+        </StyledErrorMessage>
       )}
       {isError.errorMessage === "User Not Found" && (
-        <Link to={`/`} className={classes.errorMessage}>
+        <StyledErrorMessage path={"/"}>
           oops! something went wrong! try another username!
-        </Link>
+        </StyledErrorMessage>
       )}
     </>
   );

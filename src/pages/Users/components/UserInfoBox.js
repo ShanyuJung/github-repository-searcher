@@ -8,8 +8,9 @@ const UserInfoBox = ({ className, userInfo }) => {
       </div>
       <div className="username">
         <a href={userInfo.html_url} target="_blank">
-          {userInfo.login}
+          {userInfo.name ? userInfo.name : userInfo.login}
         </a>
+        <div className="userLogin">{userInfo.login}</div>
       </div>
 
       {
@@ -108,6 +109,11 @@ const StyledUserInfoBox = styled(UserInfoBox)`
   .username a {
     text-decoration: none;
     color: #ddd;
+  }
+
+  .userLogin {
+    font-size: 1.2rem;
+    opacity: 0.6;
   }
 
   .username:hover a {

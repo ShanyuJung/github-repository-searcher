@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RepoInfoCard = ({ className, header, children }, props) => {
+const RepoInfoCard = ({ className, header, children }) => {
   return (
     <div className={className}>
       <div className="cardHeader">{header}</div>

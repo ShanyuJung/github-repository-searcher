@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const SearchUser = (name, perPage, curPage) => {
+const useSearchUser = (name, perPage, curPage) => {
   const [isValid, setIsValid] = useState(undefined);
   const [userInfo, setUserInfo] = useState({});
   const [userRepos, setUserRepos] = useState([]);
@@ -46,7 +46,7 @@ const SearchUser = (name, perPage, curPage) => {
         params: { per_page: perPage, page: curPage },
       })
         .then((res) => {
-          // console.log("GET repo");
+          console.log(`GET repo${curPage}`);
           // console.log(res.data);
           if (curPage === 1) {
             setUserRepos(res.data);
@@ -68,4 +68,4 @@ const SearchUser = (name, perPage, curPage) => {
   return { userInfo, isValid, userRepos, totalPage };
 };
 
-export default SearchUser;
+export default useSearchUser;

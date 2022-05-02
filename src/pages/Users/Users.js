@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import SearchUser from "../../API/SearchUser";
+import useSearchUser from "../../API/SearchUser";
 import { useEffect, useState } from "react";
 import StyledUserInfoBox from "./components/UserInfoBox";
 import StyledRepoHeader from "./components/RepoHeader";
@@ -11,7 +11,7 @@ const Users = (props) => {
   const [curPage, setCurPage] = useState(1);
   const navigate = useNavigate();
   const { username } = useParams();
-  const { userInfo, isValid, userRepos, totalPage } = SearchUser(
+  const { userInfo, isValid, userRepos, totalPage } = useSearchUser(
     username,
     perPage,
     curPage

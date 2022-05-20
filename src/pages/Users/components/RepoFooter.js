@@ -14,6 +14,9 @@ const StyledRepoFooter = styled(RepoFooter)`
   opacity: 0.3;
   margin-top: 2rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 `;
 
 export default StyledRepoFooter;

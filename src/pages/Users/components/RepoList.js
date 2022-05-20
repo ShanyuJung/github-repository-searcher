@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import StyledRepoBox from "./RepoBox";
-import StyledRepoFooter from "./RepoFooter";
 
-const RepoList = ({ className, userRepos, showRepoHandler }) => {
+const RepoList = ({ className, userRepos, showRepoHandler, loading }) => {
   return (
     <div className={className}>
       {userRepos.map((repo) => {
@@ -14,7 +13,6 @@ const RepoList = ({ className, userRepos, showRepoHandler }) => {
           />
         );
       })}
-      <StyledRepoFooter />
     </div>
   );
 };

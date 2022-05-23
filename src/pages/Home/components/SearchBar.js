@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const SearchBar = ({ className }) => {
   const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef("");
 
   const searchUserHandler = () => {
-    if (inputValue !== "" && inputValue !== undefined) {
-      navigate(`/users/${inputValue}/repos`);
+    if (inputRef.current.value !== "" && inputRef.current.value !== undefined) {
+      navigate(`/users/${inputRef.current.value}/repos`);
       return;
     }
     alert("Please Enter at least one character");
@@ -17,10 +17,9 @@ const SearchBar = ({ className }) => {
   return (
     <div className={className}>
       <input
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
         onKeyDown={(event) => event.key === "Enter" && searchUserHandler()}
         placeholder="Enter an username"
+        ref={inputRef}
       />
       <button onClick={searchUserHandler}>
         <i className="fa-solid fa-magnifying-glass fa-2xl"></i>

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import useSearchUser from "../../API/SearchUser";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StyledUserInfoBox from "./components/UserInfoBox";
 import StyledRepoHeader from "./components/RepoHeader";
 import StyledRepoList from "./components/RepoList";
@@ -11,6 +12,7 @@ import StyledRepoFooter from "./components/RepoFooter";
 const Users = (props) => {
   const perPage = 10;
   const [curPage, setCurPage] = useState(1);
+  const containerRef = useRef(null);
   const navigate = useNavigate();
   const { username } = useParams();
   const { userInfo, isValid, userRepos, totalPage, loading } = useSearchUser(
@@ -25,37 +27,43 @@ const Users = (props) => {
     navigate(`/users/${username}/repos/${repo.name}`);
   };
 
-  //管理Infinite Scroll
-  const scrollHandler = useCallback(
-    (totalPage) => (event) => {
-      const scrollHeight = event.target.documentElement.scrollHeight;
-      const currentHeight = Math.ceil(
-        event.target.documentElement.scrollTop + window.innerHeight
-      );
+  //Use intersectionObserver to manage Infinite Scroll
 
-      //如果上發出的request還沒拿到response不可送下一筆請求
-      //捲動到底部更新curPage, 觸發SearchUser()再次發送req再請求10筆repo資料
-      if (currentHeight + 1 >= scrollHeight && loading !== true) {
-        setCurPage((curPage) => (curPage >= totalPage ? curPage : curPage + 1));
-        console.log("send req");
-      }
-    },
-    [userRepos]
-  );
+  const requestNewPageHandler = (entries) => {
+    const [entry] = entries;
+    // console.log(entry.isIntersecting);
+    if (entry.isIntersecting && !loading && curPage < totalPage) {
+      // console.log("send req by intersectionObserver");
+      setCurPage((curPage) => (curPage >= totalPage ? curPage : curPage + 1));
+    }
+  };
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
 
   useEffect(() => {
-    let unmounted = false;
-
-    if (!unmounted) {
-      window.addEventListener("scroll", scrollHandler(totalPage));
+    const observer = new IntersectionObserver(requestNewPageHandler, options);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
+
     return () => {
-      unmounted = true;
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
     };
-  }, [totalPage]);
+  }, [containerRef, options]);
 
   return (
     <>
+      {totalPage === 1 && loading && (
+        <LoadingBox>
+          <StyledLoadingSpinner />
+        </LoadingBox>
+      )}
       {isValid && (
         <>
           <StyledUserInfoBox userInfo={userInfo} />
@@ -64,7 +72,9 @@ const Users = (props) => {
             userRepos={userRepos}
             showRepoHandler={showRepoHandler}
           />
-          {loading ? <StyledLoadingSpinner /> : <StyledRepoFooter />}
+          <FooterBox ref={containerRef}>
+            {loading ? <StyledLoadingSpinner /> : <StyledRepoFooter />}
+          </FooterBox>
         </>
       )}
       {isValid === false && (
@@ -75,5 +85,16 @@ const Users = (props) => {
     </>
   );
 };
+
+const FooterBox = styled.div`
+  height: 50px;
+  margin-bottom: 1rem;
+`;
+
+const LoadingBox = styled.div`
+  height: 100px;
+  margin-top: 1rem;
+  padding: 1rem;
+`;
 
 export default Users;

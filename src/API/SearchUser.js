@@ -59,9 +59,10 @@ const useSearchUser = (name, perPage, curPage) => {
         setIsValid(true);
         setLoading(false);
       });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      // console.log(err);
       setIsValid(false);
+      setLoading(false);
     }
   }, [name, curPage]);
 

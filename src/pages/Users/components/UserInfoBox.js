@@ -4,7 +4,7 @@ const UserInfoBox = ({ className, userInfo }) => {
   return (
     <div className={className}>
       <div className="imgLandscape">
-        <img src={userInfo.avatar_url} />
+        <img src={userInfo.avatar_url} loading="eager" alt="User Avatar" />
       </div>
       <div className="username">
         <a href={userInfo.html_url} target="_blank">
@@ -93,11 +93,24 @@ const StyledUserInfoBox = styled(UserInfoBox)`
     height: 200px;
     overflow: hidden;
     border-radius: 50%;
+    background-color: #fff;
   }
 
   .imgLandscape img {
     width: auto;
     height: 100%;
+    animation-name: loadImage;
+    animation-duration: 2000ms;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes loadImage {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .username {

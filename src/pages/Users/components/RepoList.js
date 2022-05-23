@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import StyledRepoBox from "./RepoBox";
 
-const RepoList = ({ className, userRepos, showRepoHandler, loading }) => {
+const RepoList = ({ className, userRepos, showRepoHandler }) => {
   return (
     <div className={className}>
       {userRepos.map((repo) => {

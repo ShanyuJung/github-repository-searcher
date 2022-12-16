@@ -15,7 +15,7 @@ const Users = (props) => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const { username } = useParams();
-  const { userInfo, isValid, userRepos, totalPage, loading } = useSearchUser(
+  const { userInfo, isValid, userRepos, totalPage, isLoading } = useSearchUser(
     username,
     perPage,
     curPage
@@ -32,7 +32,7 @@ const Users = (props) => {
   const requestNewPageHandler = (entries) => {
     const [entry] = entries;
     // console.log(entry.isIntersecting);
-    if (entry.isIntersecting && !loading && curPage < totalPage) {
+    if (entry.isIntersecting && !isLoading && curPage < totalPage) {
       // console.log("send req by intersectionObserver");
       setCurPage((curPage) => (curPage >= totalPage ? curPage : curPage + 1));
     }
@@ -59,7 +59,7 @@ const Users = (props) => {
 
   return (
     <>
-      {totalPage === 1 && loading && (
+      {totalPage === 1 && isLoading && (
         <LoadingBox>
           <StyledLoadingSpinner />
         </LoadingBox>
@@ -73,7 +73,7 @@ const Users = (props) => {
             showRepoHandler={showRepoHandler}
           />
           <FooterBox ref={containerRef}>
-            {loading ? <StyledLoadingSpinner /> : <StyledRepoFooter />}
+            {isLoading ? <StyledLoadingSpinner /> : <StyledRepoFooter />}
           </FooterBox>
         </>
       )}

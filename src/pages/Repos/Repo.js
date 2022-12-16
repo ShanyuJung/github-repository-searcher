@@ -17,6 +17,7 @@ const Repo = (props) => {
     errorOccur: false,
     errorMessage: "",
   });
+  const [isLoading, setLoading] = useState(false);
 
   //如果app.js有向下傳selected repo資料,直接依據資料選染
   //如果app.js向下傳的selected repo資料為undefined則發送req請求全部repo資料,用.filter()留下指定資料
@@ -25,6 +26,8 @@ const Repo = (props) => {
 
     if (!unmounted) {
       if (props.repo === undefined) {
+        if (isLoading) return;
+        setLoading(true);
         axios({
           method: "GET",
           url: `https://api.github.com/users/${username}/repos`,
@@ -43,8 +46,10 @@ const Repo = (props) => {
             }
           })
           .catch((e) => {
-            console.log(e);
             setIsError({ errorOccur: true, errorMessage: "User Not Found" });
+          })
+          .finally(() => {
+            setLoading(false);
           });
       }
     }
